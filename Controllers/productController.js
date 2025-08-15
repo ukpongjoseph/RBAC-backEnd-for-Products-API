@@ -96,10 +96,17 @@ const updateProduct = async (req, res, next) => {
 
 const deleteProduct = async (req, res, next) => {
     try {
+        const {userId} = req.user
         const {productId} = req.params
         const product = await Product.findById(productId)
+        const requestingUser = userId.toString()
+        const productOwnerId = product.productSeller.toString()
         if(!product){
             throw new customError("Product not found", 404)
+        }
+        // This condition ensures that only the product owner can delete their product from the system
+        if(productOwnerId !== requestingUser){
+            throw new customError("Access Denied, can't delete another admin's product", 403)
         }
         await Product.findByIdAndDelete(productId)
         res.status(200).json({success : true, msg : "Product deleted successfully"})
