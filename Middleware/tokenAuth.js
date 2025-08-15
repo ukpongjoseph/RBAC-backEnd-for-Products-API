@@ -13,7 +13,6 @@ const verifyToken = async (req, res, next) => {
             throw new customError("Access Denied", 401)
         }
         req.user = decoded
-        console.log(decoded)
         next()
     } catch (error) {
         // if statement is to re-write the error message for better user readability

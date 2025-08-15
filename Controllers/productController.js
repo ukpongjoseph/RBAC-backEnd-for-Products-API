@@ -37,7 +37,7 @@ const getAllAdminProducts = async (req, res, next) => {
         if(!userId){
             throw new customError("Access Denied", 403)
         }
-        const products = await Product.find({productSeller : userId}).sort({createdAt : -1})
+        const products = await Product.find({productSeller : userId}).sort({createdAt : -1}).populate("productSeller", "userName")
         res.status(200).json({success : true, msg : "Here are your products", products})
     } catch (error) {
         next(error)
@@ -53,7 +53,7 @@ const getSingleProductByAdmin = async (req, res, next) => {
         if(!userId){
             throw new customError("Access Denied", 403)
         }
-        const product = await Product.findOne({_id : productId, productSeller : userId})
+        const product = await Product.findOne({_id : productId, productSeller : userId}).populate("productSeller", "userName")
         if(!product){
             throw new customError("Product not found", 404)
         }
