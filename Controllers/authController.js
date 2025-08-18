@@ -13,7 +13,7 @@ const register = async (req, res, next) => {
             throw new customError("Please provide the necessary details", 400)
         }
         const user = await User.create(req.body)
-        res.status(201).json({success : true, msg : "User Created", user})
+        res.status(201).json({success : true, msg : "User Created successfully", user})
     } catch (error) {
         next(error)
     }

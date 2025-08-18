@@ -24,7 +24,7 @@ const createProduct = async (req, res, next) => {
 const getAllProducts = async (req, res, next) => {
     try {
         const products = await Product.find().sort("-createdAt")
-        res.status(200).json({success : true, msg : "Here are your products", products})
+        res.status(200).json({success : true, products})
     } catch (error) {
         next(error)
     }
@@ -70,7 +70,7 @@ const getSingleProduct = async (req, res, next) => {
         if(!product){
             throw new customError("Product not found", 404)
         }
-        res.status(200).json({success : true, msg : "Here is your product", product})
+        res.status(200).json({success : true, product})
     } catch (error) {
         next(error)
     }

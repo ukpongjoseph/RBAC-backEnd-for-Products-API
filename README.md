@@ -167,7 +167,6 @@ Request : {
 }
 Response :{
   "success": true,
-  "msg": "Here are your products",
   "products": [
     {
       "_id": "689e80d200d660edc10074ee",
@@ -247,7 +246,6 @@ Request : {
 }
 Response : {
   "success": true,
-  "msg": "Here is your product",
   "product": {
     "_id": "689f7527af5e6f2e881cc76e",
     "productName": "Gold chain",
